@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Kotlin Spring Validation</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="jumbotron">
+    <div class="container">
+        <h1>Welcome to Kotlin</h1>
+        <p>This demonstrates Spring Validation with Kotlin</p>
+        <form action="POST" method="post" role="form" th:action="@{/}" th:object="${article}">
+            <legend>Enter Registration Information Here</legend>
+
+            <div th:class="${#fields.hasErrors('title') ?'form-group has-error' : 'form-group'}">
+                <label for="title" class="col-sm-2 control-label">Title</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="title" placeholder=Title..."
+                           th:field="*{title}"/>
+                    <span th:each="err: ${#fields.errors('title')}" class="help-block" th:text="${err}"></span>
+                </div>
+            </div>
+            <div th:class="${#fields.hasErrors('content') ?'form-group has-error' : 'form-group'}">
+                <label for="content" class="col-sm-2 control-label">Content</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="content" placeholder="Content..."
+                           th:field="*{content}"/>
+                    <span th:each="err: ${#fields.errors('content')}" class="help-block" th:text="${err}"></span>
+                </div>
+            </div>
+            <div th:class="${#fields.hasErrors('email') ?'form-group has-error' : 'form-group'}">
+                <label for="email" class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="email" placeholder="Email Address..."
+                           th:field="*{email}"/>
+                    <span th:each="err: ${#fields.errors('email')}" class="help-block" th:text="${err}"></span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

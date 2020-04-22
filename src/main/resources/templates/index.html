@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/main.css">
+    <title>SpringImageApp</title>
+</head>
+<body>
+<h1>Adding Articles</h1>
+<form th:action="@{/api/articles-post}" method="post" role="form" th:object="${article}">
+    <div class="form-group">
+        <label for="articleTitle">Article Name</label>
+        <input type="text" class="form-control" name="articleTitle" id="articleTitle" placeholder="Enter a title here.."
+               th:field="*{title}"></input>
+        <label for="articleContent">Article Content</label>
+        <input type="text" class="form-control" name="articleContent" id="articleContent" placeholder="Enter article content"
+               th:field="*{content}"></input>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<div class="row" th:if="${articles.size() > 0}">
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Created Date</th>
+            <th>Updated Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="article : ${articles}">
+            <td th:text="${article.id}"></td>
+            <td th:text="${article.title}"></td>
+            <td th:text="${article.content}"></td>
+            <td th:text="${article.createDateTime}"></td>
+            <td th:text="${article.updateDateTime}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
