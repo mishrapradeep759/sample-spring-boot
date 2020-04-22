@@ -14,7 +14,7 @@ import java.util.*
 import javax.validation.Valid
 
 @Controller
-@RestController
+//@RestController
 @RequestMapping("/api")
 class ArticleController(private val articleRepository: ArticleRepository) {
 
