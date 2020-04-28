@@ -24,7 +24,6 @@ fun main(args: Array<String>) {
 interface RawDateTimeFormatter{
     val rawDate: String
     fun dateFormatter(date: String): String
-
 }
 
 open class GenericDateTimeFormatter : RawDateTimeFormatter{

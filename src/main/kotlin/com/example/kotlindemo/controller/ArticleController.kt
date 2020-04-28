@@ -1,5 +1,6 @@
 package com.example.kotlindemo.controller
 
+import com.example.kotlindemo.Service.ArticleService
 import com.example.kotlindemo.model.Article
 import com.example.kotlindemo.model.isValid
 import com.example.kotlindemo.repository.ArticleRepository
@@ -18,6 +19,9 @@ import javax.validation.Valid
 @RequestMapping("/api")
 class ArticleController(private val articleRepository: ArticleRepository) {
 
+    @Autowired
+    lateinit var articleService: ArticleService
+
 //    @GetMapping("/articles")
 //    fun getAllArticles(): List<Article> =
 //            articleRepository.findAll()
@@ -26,7 +30,7 @@ class ArticleController(private val articleRepository: ArticleRepository) {
     fun getAllArticles(model: Model): String {
         model.apply{
             addAttribute("article", Article())
-            addAttribute("articles", articleRepository.findAll().toList())
+            addAttribute("articles", articleService.getAllArticles())
         }
         return "index"
     }
